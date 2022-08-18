@@ -4,9 +4,14 @@ function startGame(){
 }
 
 function selectPet(){
-    pet = document.getElementById('pet')
+    pet = document.getElementById('pet');
     selected = pet.options[pet.selectedIndex].text;
-    alert(selected)
+
+    player = document.getElementById('my-pet')
+    player.innerHTML = selected;
+
+    playerHealth = document.getElementById('my-pet-health');
+    playerHealth.innerHTML = '❤️❤️❤️';
 }
 
-window.addEventListener('load', startGame)
+window.addEventListener('load', startGame);
