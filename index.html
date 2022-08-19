@@ -11,7 +11,7 @@
 <body>
     <h1>Mokepon 🔥💧🌱</h1>
 
-    <section class="choose-pet">
+    <section class="pets">
         <h2>Select a Mokepon</h2>
         <select id="pet">
             <optgroup label="Water">
@@ -27,29 +27,29 @@
                 <option value='kailamor'>Kailamor 🔥</option>
             </optgroup>
             <optgroup label="Hybrid">
-                <option value='tucapalma'>Tucapalma 💧🌱</option>
+                <option value='tucapalma'>Tucapalma 🌱💧</option>
                 <option value='pydos'>Pydos 🌱🔥</option>
             </optgroup>
         </select>
         <button class="bt-pet" id="bt-pet">Select</button>
     </section>
 
-    <section class="choose-attack">
+    <section class="movements">
         <p><span id="my-pet"></span> <span id="my-pet-health"></span></p>
 
         <p><span id="enemy-pet"></span> <span id="enemy-pet-health"></span></p>
 
-        <h2>Select an attack</h2>
+        <h2>Select a movement</h2>
         <p>
-            <button class="bt-fire" id="bt-fire">Fire 🔥</button>
-            <button class="bt-water" id="bt-water">Water 💧</button>
-            <button class="bt-earth" id="bt-earth">Earth 🌱</button>
+            <button class="bt-movement1" id="bt-movement1"></button>
+            <button class="bt-movement2" id="bt-movement2"></button>
+            <button class="bt-movement3" id="bt-movement3"></button>
         </p>
     </section>
 
     <section class="messages">
-        <p>Snurkels attacks with 💧</p>
-        <p>Juggelbof attacks with 🔥</p>
+        <p><span id="my-pet-movement"></span> uses <span id="movement-player"></span>.</p>
+        <p><span id="enemy-pet-movement"></span> uses <span id="movement-enemy"></span>.</p>
         <p>Snurkels wins 💧</p>
     </section>
 
