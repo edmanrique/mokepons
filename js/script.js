@@ -3,6 +3,9 @@ startGame()
 let myHearts = 3;
 let enemyHearts = 3;
 
+let playerDefense = false;
+let enemyDefense = false;
+
 function startGame() {
     let btSelectPet = document.getElementById('choosing__button');
     btSelectPet.addEventListener('click', selectPlayerPet);
@@ -10,6 +13,14 @@ function startGame() {
 
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function getInterval(n1, n2) {
+    if(Math.random() < 0.5){
+        return n1;
+    } else {
+        return n2;
+    }
 }
 
 function selectPlayerPet() {
@@ -121,10 +132,21 @@ function setPlayerMovement(attack, defense, healing) {
 }
 
 function defineEnemyMovement(firstElement, hybrid) {
-    if(enemyHearts < 3){
+    if(enemyHearts < 3 && !enemyDefense){
         movement = getRandom(1, 3);
-    } else {
+        console.log(1)
+    } else if(enemyHearts == 3 && enemyDefense) {
+        movement = 1;
+        console.log(2)
+    } else if(enemyHearts == 3 && !enemyDefense){
         movement = getRandom(1, 2);
+        console.log(3)
+    } else if(enemyHearts < 3 && enemyDefense){
+        movement = getInterval(1, 3);
+        console.log(4)
+    } else {
+        movement = getRandom(1, 3);
+        console.log(0)
     }
 
     if (hybrid) {
@@ -147,13 +169,19 @@ function defineEnemyMovement(firstElement, hybrid) {
 function setEnemyMovement(movement, attack, defense, healing){
     switch (movement) {
         case 1:
-            myHearts--;
+            console.log(enemyDefense)
+            if(!playerDefense){
+                myHearts--;
+            }
+            playerDefense = false;
             updatePetHearts();
             AddMovement(attack, 2)
             checkWinner()
             break;
         case 2:
+            enemyDefense = true;
             AddMovement(defense, 2)
+            updatePetHearts()
             break;
         case 3:
             enemyHearts = 3;
@@ -170,7 +198,10 @@ function figth(btnAttack, btnDefense, btnHealing) {
 
 function attack() {
     AddMovement(document.getElementById('movements__bt-attack').innerHTML, 1)
-    enemyHearts--;
+    if(!enemyDefense){
+        enemyHearts--;
+    }
+    enemyDefense = false;
     updatePetHearts();
     if(!checkWinner()){
         selectMovement(getPetName(2), 2)
@@ -178,6 +209,8 @@ function attack() {
 }
 
 function defense() {
+    playerDefense = true;
+    updatePetHearts()
     AddMovement(document.getElementById('movements__bt-defense').innerHTML, 1)
     selectMovement(getPetName(2), 2)
 }
@@ -209,12 +242,31 @@ function updatePetHearts(){
     myPet.innerHTML = ''
     enemyPet.innerHTML = ''
 
-    for(let x = 0; x < myHearts; x++){
-        myPet.innerHTML += '❤️';
-    }
+    if(playerDefense || enemyDefense){
 
-    for(let x = 0; x < enemyHearts; x++){
-        enemyPet.innerHTML += '❤️';
+        for(let x = 0; x < myHearts; x++){
+            myPet.innerHTML += '❤️';
+        }
+
+        if(playerDefense){
+            myPet.innerHTML += '💛';
+        }
+
+        for(let x = 0; x < enemyHearts; x++){
+            enemyPet.innerHTML += '❤️';
+        }
+
+        if(enemyDefense){
+            enemyPet.innerHTML += '💛';
+        }
+    } else {
+        for(let x = 0; x < myHearts; x++){
+            myPet.innerHTML += '❤️';
+        }
+
+        for(let x = 0; x < enemyHearts; x++){
+            enemyPet.innerHTML += '❤️';
+        }
     }
 }
 
