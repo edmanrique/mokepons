@@ -1,70 +1,82 @@
+startGame()
+
+let myHearts = 3;
+let enemyHearts = 3;
+
 function startGame() {
-    let btPet = document.getElementById('bt-pet');
-    btPet.addEventListener('click', selectPet);
+    let btSelectPet = document.getElementById('choosing__button');
+    btSelectPet.addEventListener('click', selectPlayerPet);
 }
 
-function randomPet(min, max) {
+function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function selectPet() {
-    let pet = document.getElementById('pet');
-    let selected = pet.options[pet.selectedIndex].text;
+function selectPlayerPet() {
+    let pet = document.getElementById('choosing__select');
+    let selectedPet = pet.options[pet.selectedIndex].text;
 
-    let player = document.getElementById('my-pet')
-    player.innerHTML = selected;
+    let petName = document.getElementById('movements__my-pet--name')
+    petName.innerHTML = selectedPet;
 
-    let playerHealth = document.getElementById('my-pet-health');
-    playerHealth.innerHTML = '❤️❤️❤️';
+    let petHealth = document.getElementById('movements__my-pet--health');
+    petHealth.innerHTML = ''
+    for(let x = 0; x < myHearts; x++){
+        petHealth.innerHTML += '❤️';
+    }
 
-    selectEnemyPet(selected);
+    selectEnemyPet(selectedPet);
 }
 
-function selectEnemyPet(player) {
-    let rPet = randomPet(1, 8);
-    let enemyPet = ''
+function selectEnemyPet(playerPet) {
+    let n = getRandom(1, 8);
+    let pet = ''
 
-    switch (rPet) {
+    switch (n) {
         case 1:
-            enemyPet = 'Hipodoge 💧';
+            pet = 'Hipodoge 💧';
             break;
         case 2:
-            enemyPet = 'Suggles 💧';
+            pet = 'Suggles 💧';
             break;
         case 3:
-            enemyPet = 'Capipepo 🌱';
+            pet = 'Capipepo 🌱';
             break;
         case 4:
-            enemyPet = 'Todd 🌱';
+            pet = 'Todd 🌱';
             break;
         case 5:
-            enemyPet = 'Ratigueya 🔥';
+            pet = 'Ratigueya 🔥';
             break;
         case 6:
-            enemyPet = 'Kailamor 🔥';
+            pet = 'Kailamor 🔥';
             break;
         case 7:
-            enemyPet = 'Tucapalma 💧🌱';
+            pet = 'Tucapalma 💧🌱';
             break;
         case 8:
-            enemyPet = 'Pydos 🌱🔥';
+            pet = 'Pydos 🌱🔥';
             break;
     }
 
-    if (enemyPet == player) {
-        return selectEnemyPet(player);
+    if (pet == playerPet) {
+        return selectEnemyPet(playerPet);
     }
 
-    let npc = document.getElementById('enemy-pet');
-    npc.innerHTML = enemyPet;
+    let petName = document.getElementById('movements__enemy-pet--name');
+    petName.innerHTML = pet;
 
-    let npcHealth = document.getElementById('enemy-pet-health');
-    npcHealth.innerHTML = '❤️❤️❤️';
+    let petHealth = document.getElementById('movements__enemy-pet--health');
+    petHealth.innerHTML = '';
 
-    selectMovement(player);
+    for(let x = 0; x < enemyHearts; x++){
+        petHealth.innerHTML += '❤️';
+    }
+
+    selectMovement(playerPet, 1);
 }
 
-function selectMovement(player) {
+function selectMovement(player, type) {
     let firstElement = player.substr(player.length - 1, 1);
     let secondElement = player.charAt(player.length - 3, 1);
     let hybrid = false;
@@ -74,34 +86,80 @@ function selectMovement(player) {
         hybrid = true;
     }
 
-    if (hybrid) {
-        if (firstElement == '\uDD25') {
-            setMovements('Forest fire', 'Flaming rock', 'Chrysalis');
-        } else if (firstElement == '\uDCA7') {
-            setMovements('Earthly rain', 'Aquake', 'Mud Bath');
+    if (type == 1) {
+        if (hybrid) {
+            if (firstElement == '\uDD25') {
+                setPlayerMovement('Forest fire', 'Flaming rock', 'Chrysalis');
+            } else if (firstElement == '\uDCA7') {
+                setPlayerMovement('Earthly rain', 'Aquake', 'Mud Bath');
+            }
+        } else {
+
+            if (firstElement == '\uDD25') {
+                setPlayerMovement('Burning flames', 'Wallfire', 'Pyrohealth')
+            } else if (firstElement == '\uDCA7') {
+                setPlayerMovement('Tsunami', 'Frosty', 'Relax waves')
+            } else {
+                setPlayerMovement('Earthquake', 'Eternal mountains', 'Magic herbs')
+            }
         }
     } else {
-
-        if (firstElement == '\uDD25') {
-            setMovements('Burning flames', 'Wallfire', 'Pyrohealth')
-        } else if (firstElement == '\uDCA7') {
-            setMovements('Tsunami', 'Frosty', 'Relax waves')
-        } else {
-            setMovements('Earthquake', 'Eternal mountains', 'Magic herbs')
-        }
+        defineEnemyMovement(firstElement, hybrid)
     }
 }
 
-function setMovements(attack, defense, healing) {
-    let btMovement1 = document.getElementById('bt-movement1');
-    let btMovement2 = document.getElementById('bt-movement2');
-    let btMovement3 = document.getElementById('bt-movement3');
+function setPlayerMovement(attack, defense, healing) {
+    let btMovement1 = document.getElementById('movements__bt-attack');
+    let btMovement2 = document.getElementById('movements__bt-defense');
+    let btMovement3 = document.getElementById('movements__bt-healing');
 
     btMovement1.innerHTML = attack;
     btMovement2.innerHTML = defense;
     btMovement3.innerHTML = healing;
 
     figth(btMovement1, btMovement2, btMovement3);
+}
+
+function defineEnemyMovement(firstElement, hybrid) {
+    if(enemyHearts < 3){
+        movement = getRandom(1, 3);
+    } else {
+        movement = getRandom(1, 2);
+    }
+
+    if (hybrid) {
+        if (firstElement == '\uDD25') {
+            setEnemyMovement(movement, 'Forest fire', 'Flaming rock', 'Chrysalis')
+        } else if (firstElement == '\uDCA7') {
+            setEnemyMovement(movement, 'Earthly rain', 'Aquake', 'Mud Bath')
+        }
+    } else {
+        if (firstElement == '\uDD25') {
+            setEnemyMovement(movement, 'Burning flames', 'Wallfire', 'Pyrohealth')
+        } else if (firstElement == '\uDCA7') {
+            setEnemyMovement(movement, 'Tsunami', 'Frosty', 'Relax waves')
+        } else {
+            setEnemyMovement(movement, 'Earthquake', 'Eternal mountains', 'Magic herbs')
+        }
+    }
+}
+
+function setEnemyMovement(movement, attack, defense, healing){
+    switch (movement) {
+        case 1:
+            myHearts--;
+            updatePetHearts();
+            AddMovement(attack, 2)
+            checkWinner()
+            break;
+        case 2:
+            AddMovement(defense, 2)
+            break;
+        case 3:
+            enemyHearts = 3;
+            updatePetHearts()
+            AddMovement(healing, 2)
+    }
 }
 
 function figth(btnAttack, btnDefense, btnHealing) {
@@ -111,22 +169,76 @@ function figth(btnAttack, btnDefense, btnHealing) {
 }
 
 function attack() {
-    playerName()
-    document.getElementById('movement-player').innerHTML = document.getElementById('bt-movement1').innerHTML;
+    AddMovement(document.getElementById('movements__bt-attack').innerHTML, 1)
+    enemyHearts--;
+    updatePetHearts();
+    if(!checkWinner()){
+        selectMovement(getPetName(2), 2)
+    }
 }
 
 function defense() {
-    playerName()
-    document.getElementById('movement-player').innerHTML = document.getElementById('bt-movement2').innerHTML;
+    AddMovement(document.getElementById('movements__bt-defense').innerHTML, 1)
+    selectMovement(getPetName(2), 2)
 }
 
 function healing() {
-    playerName()
-    document.getElementById('movement-player').innerHTML = document.getElementById('bt-movement3').innerHTML;
+    myHearts = 3;
+    updatePetHearts()
+    AddMovement(document.getElementById('movements__bt-healing').innerHTML, 1)
+    selectMovement(getPetName(2), 2)
 }
 
-function playerName(){
-    document.getElementById('my-pet-movement').innerHTML = document.getElementById('my-pet').innerHTML
+function AddMovement(movement, type){
+    let section = document.getElementById('messages')
+    let paragraph = document.createElement('p')
+
+    if(type == 1){
+        paragraph.innerHTML = getPetName(1) + ' uses ' + movement;
+    } else if(type == 2) {
+        paragraph.innerHTML = getPetName(2) + ' uses ' + movement;
+    }
+
+    section.appendChild(paragraph)
 }
 
-window.addEventListener('load', startGame);
+function updatePetHearts(){
+    myPet = document.getElementById('movements__my-pet--health');
+    enemyPet = document.getElementById('movements__enemy-pet--health');
+
+    myPet.innerHTML = ''
+    enemyPet.innerHTML = ''
+
+    for(let x = 0; x < myHearts; x++){
+        myPet.innerHTML += '❤️';
+    }
+
+    for(let x = 0; x < enemyHearts; x++){
+        enemyPet.innerHTML += '❤️';
+    }
+}
+
+function checkWinner(){
+    let section = document.getElementById('messages')
+    let paragraph = document.createElement('p')
+
+    if(myHearts == 0){
+        paragraph.innerHTML = getPetName(2) + ' wins.';
+        section.appendChild(paragraph)
+        return true;
+    } else if(enemyHearts == 0){
+        paragraph.innerHTML = getPetName(1) + ' wins.';
+        section.appendChild(paragraph)
+        return true;
+    }
+}
+
+function getPetName(type){
+    if (type == 1) {
+        return document.getElementById('movements__my-pet--name').innerHTML
+    } else {
+        return document.getElementById('movements__enemy-pet--name').innerHTML
+    }
+}
+
+// window.addEventListener('load', startGame);

@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/361/361998.png" type="image/x-icon">
     <title>Mokepon: Fire, Water and Earth</title>
-    <script src="./js/script.js"></script>
+    <script src="./js/script.js" defer></script>
 </head>
 <body>
     <h1>Mokepon 🔥💧🌱</h1>
 
-    <section class="pets">
+    <section class="choosing choosing-pet">
         <h2>Select a Mokepon</h2>
-        <select id="pet">
+        <select id="choosing__select" class="choosing__select">
             <optgroup label="Water">
                 <option value='hipodoge'>Hipodoge 💧</option>
                 <option value='suggles'>Suggles 💧</option>
@@ -31,32 +31,29 @@
                 <option value='pydos'>Pydos 🌱🔥</option>
             </optgroup>
         </select>
-        <button class="bt-pet" id="bt-pet">Select</button>
+        <button class="choosing__button" id="choosing__button">Select</button>
     </section>
 
     <section class="movements">
-        <p><span id="my-pet"></span> <span id="my-pet-health"></span></p>
+        <p><span id="movements__my-pet--name"></span> <span id="movements__my-pet--health"></span></p>
 
-        <p><span id="enemy-pet"></span> <span id="enemy-pet-health"></span></p>
+        <p><span id="movements__enemy-pet--name"></span> <span id="movements__enemy-pet--health"></span></p>
 
         <h2>Select a movement</h2>
         <p>
-            <button class="bt-movement1" id="bt-movement1"></button>
-            <button class="bt-movement2" id="bt-movement2"></button>
-            <button class="bt-movement3" id="bt-movement3"></button>
+            <button class="movements__bt-attack" id="movements__bt-attack"></button>
+            <button class="movements__bt-defense" id="movements__bt-defense"></button>
+            <button class="movements__bt-healing" id="movements__bt-healing"></button>
         </p>
     </section>
 
-    <section class="messages">
-        <p><span id="my-pet-movement"></span> uses <span id="movement-player"></span>.</p>
-        <p><span id="enemy-pet-movement"></span> uses <span id="movement-enemy"></span>.</p>
-        <p>Snurkels wins 💧</p>
+    <section id="messages">
     </section>
 
-    <section>
+    <section class="congrats">
         <h2>Congratulations! Are you ready for the next level?</h2>
-        <button class="bt-yes" id="bt-yes">Yes</button>
-        <button class="bt-no" id="bt-no">No</button>
+        <button class="congrats__bt-yes" id="congrats__bt-yes">Yes</button>
+        <button class="congrats__bt-no" id="congrats__bt-no">No</button>
     </section>
 </body>
 </html>
