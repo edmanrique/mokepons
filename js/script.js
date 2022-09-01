@@ -1,17 +1,27 @@
-startGame()
-
 let myHearts = 3;
 let enemyHearts = 3;
 
 let playerDefense = false;
 let enemyDefense = false;
 
+let sectionChoosing = document.getElementById('choosing');
+let sectionMovements = document.getElementById('movements');
+let sectionMessages = document.getElementById('messages');
+let sectionResult = document.getElementById('result');
+
+startGame()
+
 function startGame() {
+
+    sectionMovements.style.display = 'none'
+    sectionMessages.style.display = 'none'
+    sectionResult.style.display = 'none'
+
     let btSelectPet = document.getElementById('choosing__button');
     let btnAttack = document.getElementById('movements__bt-attack');
     let btnDefense = document.getElementById('movements__bt-defense');
     let btnHealing = document.getElementById('movements__bt-healing');
-    let btRestart = document.getElementById('congrats__bt-restart');
+    let btRestart = document.getElementById('result__bt-restart');
 
     btnHealing.disabled = true;
 
@@ -35,6 +45,10 @@ function getInterval(n1, n2) {
 }
 
 function selectPlayerPet() {
+    sectionChoosing.hidden = true;
+    sectionMovements.style.display = 'block'
+    sectionMessages.style.display = 'block'
+
     let pet = document.getElementById('choosing__select');
     let selectedPet = pet.options[pet.selectedIndex].text;
 
@@ -297,14 +311,39 @@ function updatePetHearts(){
 function checkWinner(){
     let section = document.getElementById('messages')
     let paragraph = document.createElement('p')
+    let rMessage = document.getElementById('result__message')
+
+    let btnAttack = document.getElementById('movements__bt-attack');
+    let btnDefense = document.getElementById('movements__bt-defense');
+    let btnHealing = document.getElementById('movements__bt-healing');
 
     if(myHearts == 0){
+        sectionMovements.style.display = 'none'
+        sectionResult.style.display = 'block'
+
+        rMessage.innerHTML = 'Sorry! You lose'
+
         paragraph.innerHTML = getPetName(2) + ' wins.';
         section.appendChild(paragraph)
+
+        btnAttack.disabled = true;
+        btnDefense.disabled = true;
+        btnHealing.disabled = true;
+
         return true;
     } else if(enemyHearts == 0){
+        sectionMovements.style.display = 'none'
+        sectionResult.style.display = 'block'
+
+        rMessage.innerHTML = 'Congratulations! You win'
+
         paragraph.innerHTML = getPetName(1) + ' wins.';
         section.appendChild(paragraph)
+
+        btnAttack.disabled = true;
+        btnDefense.disabled = true;
+        btnHealing.disabled = true;
+
         return true;
     }
 }

@@ -11,7 +11,7 @@
 <body>
     <h1>Mokepon 🔥💧🌱</h1>
 
-    <section class="choosing choosing-pet">
+    <section id="choosing">
         <h2>Select a Mokepon</h2>
         <select id="choosing__select" class="choosing__select">
             <optgroup label="Water">
@@ -34,7 +34,7 @@
         <button class="choosing__button" id="choosing__button">Select</button>
     </section>
 
-    <section class="movements">
+    <section id="movements">
         <p><span id="movements__my-pet--name"></span> <span id="movements__my-pet--health"></span></p>
 
         <p><span id="movements__enemy-pet--name"></span> <span id="movements__enemy-pet--health"></span></p>
@@ -50,9 +50,9 @@
     <section id="messages">
     </section>
 
-    <section class="congrats">
-        <h2>Congratulations! Are you ready for the next fight?</h2>
-        <button class="congrats__bt-yes" id="congrats__bt-restart">Restart</button>
+    <section id="result">
+        <h2 id="result__message"></h2>
+        <button class="result__bt-restart" id="result__bt-restart">Restart</button>
     </section>
 </body>
 </html>
