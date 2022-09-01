@@ -8,7 +8,18 @@ let enemyDefense = false;
 
 function startGame() {
     let btSelectPet = document.getElementById('choosing__button');
+    let btnAttack = document.getElementById('movements__bt-attack');
+    let btnDefense = document.getElementById('movements__bt-defense');
+    let btnHealing = document.getElementById('movements__bt-healing');
+    let btRestart = document.getElementById('congrats__bt-restart');
+
+    btnHealing.disabled = true;
+
     btSelectPet.addEventListener('click', selectPlayerPet);
+    btnAttack.addEventListener('click', attack);
+    btnDefense.addEventListener('click', defense);
+    btnHealing.addEventListener('click', healing);
+    btRestart.addEventListener('click', restartGame);
 }
 
 function getRandom(min, max) {
@@ -127,8 +138,6 @@ function setPlayerMovement(attack, defense, healing) {
     btMovement1.innerHTML = attack;
     btMovement2.innerHTML = defense;
     btMovement3.innerHTML = healing;
-
-    figth(btMovement1, btMovement2, btMovement3);
 }
 
 function defineEnemyMovement(firstElement, hybrid) {
@@ -190,12 +199,6 @@ function setEnemyMovement(movement, attack, defense, healing){
     }
 }
 
-function figth(btnAttack, btnDefense, btnHealing) {
-    btnAttack.addEventListener('click', attack);
-    btnDefense.addEventListener('click', defense);
-    btnHealing.addEventListener('click', healing);
-}
-
 function attack() {
     AddMovement(document.getElementById('movements__bt-attack').innerHTML, 1)
     if(!enemyDefense){
@@ -209,6 +212,9 @@ function attack() {
 }
 
 function defense() {
+    let bt = document.getElementById('movements__bt-defense');
+    bt.disabled = true;
+
     playerDefense = true;
     updatePetHearts()
     AddMovement(document.getElementById('movements__bt-defense').innerHTML, 1)
@@ -216,6 +222,9 @@ function defense() {
 }
 
 function healing() {
+    let bt = document.getElementById('movements__bt-healing');
+    bt.disabled = true;
+
     myHearts = 3;
     updatePetHearts()
     AddMovement(document.getElementById('movements__bt-healing').innerHTML, 1)
@@ -223,6 +232,21 @@ function healing() {
 }
 
 function AddMovement(movement, type){
+    let btDefense = document.getElementById('movements__bt-defense');
+    let btHealing = document.getElementById('movements__bt-healing');
+
+    if(playerDefense){
+        btDefense.disabled = true;
+    } else {
+        btDefense.disabled = false;
+    }
+
+    if(myHearts == 3){
+        btHealing.disabled = true;
+    } else {
+        btHealing.disabled = false;
+    }
+
     let section = document.getElementById('messages')
     let paragraph = document.createElement('p')
 
@@ -291,6 +315,10 @@ function getPetName(type){
     } else {
         return document.getElementById('movements__enemy-pet--name').innerHTML
     }
+}
+
+function restartGame(){
+    location.reload()
 }
 
 // window.addEventListener('load', startGame);
