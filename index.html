@@ -5,49 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/361/361998.png" type="image/x-icon">
-    <title>Mokepon: Fire, Water and Earth</title>
+    <title>Mokepon: The Last Mokeball</title>
     <script src="./js/script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Mokepon 🔥💧🌱</h1>
+    <h1 class="title" id="title">Mokepon: The Last Mokeball</h1>
 
-    <section id="choosing">
+    <section id="elements" class="elements">
+        <h2>Select the element</h2>
+        <div class="elements__select">
+            <button id="btFire"><img src="./images/Icon-Fire.png" alt=""></button>
+            <button id="btWater"><img src="./images/Icon-Water.png" alt=""></button>
+            <button id="btEarth"><img src="./images/Icon-Nature.png" alt=""></button>
+        </div>
+    </section>
+
+    <section id="choosing" class="choosing">
         <h2>Select a Mokepon</h2>
-        <select id="choosing__select" class="choosing__select">
-            <optgroup label="Water">
-                <option value='hipodoge'>Hipodoge 💧</option>
-                <option value='suggles'>Suggles 💧</option>
-            </optgroup>
-            <optgroup label="Earth">
-                <option value='capipepo'>Capipepo 🌱</option>
-                <option value='todd'>Todd 🌱</option>
-            </optgroup>
-            <optgroup label="Fire">
-                <option value='ratigueya'>Ratigueya 🔥</option>
-                <option value='kailamor'>Kailamor 🔥</option>
-            </optgroup>
-            <optgroup label="Hybrid">
-                <option value='tucapalma'>Tucapalma 🌱💧</option>
-                <option value='pydos'>Pydos 🌱🔥</option>
-            </optgroup>
-        </select>
-        <button class="choosing__button" id="choosing__button">Select</button>
+
+        <div class="choosing__pet">
+            <div class="choosing__pet1">
+                <h4 id="choosing__pet__name1"></h4>
+                <button id="btPet1"></button>
+            </div>
+            <div class="choosing__pet2">
+                <h4 id="choosing__pet__name2"></h4>
+                <button id="btPet2"></button>
+            </div>
+        </div>
+    </section>
+    <section id="movements" class="movements">
+        <div class="movements__figthers">
+            <div class="movements__player">
+                <p><span id="movements__my-pet--name"></span> <span id="movements__my-pet--health"></span></p>
+                <img src="" alt="" id="player__image">
+            </div>
+
+            <img src="./images/vs.png" alt="">
+
+            <div class="movements__enemy">
+                <p><span id="movements__enemy-pet--name"></span> <span id="movements__enemy-pet--health"></span></p>
+                <img src="" alt="" id="enemy__image">
+            </div>
+        </div>
+        <div class="movements__do">
+            <h2>Select a movement</h2>
+            <p>
+                <button class="movements__bt-attack" id="movements__bt-attack"></button>
+                <button class="movements__bt-defense" id="movements__bt-defense"></button>
+                <button class="movements__bt-healing" id="movements__bt-healing"></button>
+            </p>
+        </div>
     </section>
 
-    <section id="movements">
-        <p><span id="movements__my-pet--name"></span> <span id="movements__my-pet--health"></span></p>
-
-        <p><span id="movements__enemy-pet--name"></span> <span id="movements__enemy-pet--health"></span></p>
-
-        <h2>Select a movement</h2>
-        <p>
-            <button class="movements__bt-attack" id="movements__bt-attack"></button>
-            <button class="movements__bt-defense" id="movements__bt-defense"></button>
-            <button class="movements__bt-healing" id="movements__bt-healing"></button>
-        </p>
-    </section>
-
-    <section id="messages">
+    <section id="messages" class="messages">
     </section>
 
     <section id="result">

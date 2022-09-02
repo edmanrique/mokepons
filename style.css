@@ -1,0 +1,123 @@
+@font-face{
+    font-family: BorisBlackBloxxDirty;
+    src: url(./fonts/BorisBlackBloxxDirty.ttf) format('truetype');
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: BorisBlackBloxxDirty;
+}
+
+.title{
+    color: rgb(252, 58, 58);
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.elements{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.elements button{
+    margin-top: 30px;
+}
+
+.elements__select{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.elements__select button{
+    background-color: transparent;
+    border: 0px;
+}
+
+.elements__select img:hover{
+    cursor: pointer;
+    filter: brightness(150%);
+}
+
+.choosing{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.choosing__pet{
+    width: 35%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 60px 0px;
+}
+
+.choosing__pet button{
+    background-color: rgb(97, 0, 0);
+    border-radius: 10px;
+    padding: 20px;
+    border: 0px;
+    background-image: linear-gradient(to top, #ffd76a 0%, #ff0844 100%);
+}
+
+.choosing__pet button:hover{
+    cursor: pointer;
+    filter: brightness(120%);
+}
+
+.choosing__pet1 h4, .choosing__pet2 h4{
+    text-align: center;
+    margin-bottom: 7px;
+}
+
+.choosing__pet1 img, .choosing__pet2 img{
+    height: 17vh;
+    width: 7vw;
+}
+
+.movements{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movements img{
+    height: 17vh;
+    width: 7vw;
+}
+
+.movements__player, .movements__enemy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movements__figthers{
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.movements .movements__figthers > img {
+    width: 130px;
+}
+
+.messages{
+    display: flex;
+    flex-direction: column;
+}
+
+.movements__do{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
