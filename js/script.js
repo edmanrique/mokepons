@@ -17,20 +17,20 @@ startGame()
 
 function startGame() {
 
-    sectionChoosing.style.display = 'none'
-    sectionMovements.style.display = 'none'
-    sectionMessages.style.display = 'none'
-    sectionResult.style.display = 'none'
+    sectionChoosing.style.display = 'none';
+    sectionMovements.style.display = 'none';
+    sectionMessages.style.display = 'none';
+    sectionResult.style.display = 'none';
 
     let btnAttack = document.getElementById('movements__bt-attack');
     let btnDefense = document.getElementById('movements__bt-defense');
     let btnHealing = document.getElementById('movements__bt-healing');
     let btRestart = document.getElementById('result__bt-restart');
-    let btFire = document.getElementById('btFire')
-    let btWater = document.getElementById('btWater')
-    let btEarth = document.getElementById('btEarth')
-    let btPet1 = document.getElementById('btPet1')
-    let btPet2 = document.getElementById('btPet2')
+    let btFire = document.getElementById('btFire');
+    let btWater = document.getElementById('btWater');
+    let btEarth = document.getElementById('btEarth');
+    let btPet1 = document.getElementById('btPet1');
+    let btPet2 = document.getElementById('btPet2');
 
     btnHealing.disabled = true;
 
@@ -38,15 +38,29 @@ function startGame() {
     btnDefense.addEventListener('click', defense);
     btnHealing.addEventListener('click', healing);
     btRestart.addEventListener('click', restartGame);
-    btFire.addEventListener('click', setFire)
-    btWater.addEventListener('click', setWater)
-    btEarth.addEventListener('click', setEarth)
-    btPet1.addEventListener('click', selectPlayerPet1)
-    btPet2.addEventListener('click', selectPlayerPet2)
+    btFire.addEventListener('click', setFire);
+    btWater.addEventListener('click', setWater);
+    btEarth.addEventListener('click', setEarth);
+    btPet1.addEventListener('click', selectPlayerPet1);
+    btPet2.addEventListener('click', selectPlayerPet2);
 }
 
+/*
+The logic in the next function could be confuse. So, let's explain it.
+First, we define that we will round a number to the floor, so, 4.1 is 4 and 4.9 is 4 too.
+Then, we call Math.random() function, that returns a number between 0 and 0.9.
+We multiply the result of Math.random by the subtraction of the max limit minus the min limit plus 1.
+Finally, we add it to the min limit.
+
+For example; '0.25 * (10 - 5 + 1) + 5'
+
+So, why we need to add 1 to the subtraction between the parenthesis? The key is thinking in the max limit.
+If we make the calculations, if we skip that addition, we'll never get the max number, because
+the function doesn't return 1 never.
+*/
+
 function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function getInterval(n1, n2) {
@@ -58,39 +72,39 @@ function getInterval(n1, n2) {
 }
 
 function setFire() {
-    let pet1 = document.getElementById('choosing__pet__name1')
-    let pet2 = document.getElementById('choosing__pet__name2')
+    let pet1 = document.getElementById('choosing__pet__name1');
+    let pet2 = document.getElementById('choosing__pet__name2');
 
-    pet1.innerHTML = 'Kailamor'
-    pet2.innerHTML = 'Ratigueya'
+    pet1.innerHTML = 'Kailamor';
+    pet2.innerHTML = 'Ratigueya';
 
-    sectionElements.style.display = 'none'
-    sectionChoosing.style.display = 'flex'
+    sectionElements.style.display = 'none';
+    sectionChoosing.style.display = 'flex';
 
-    let btPet1 = document.getElementById('btPet1')
-    btPet1.innerHTML = '<img src="./images/Kailamor.png" alt="">'
+    let btPet1 = document.getElementById('btPet1');
+    btPet1.innerHTML = '<img src="./images/Kailamor.png" alt="">';
 
-    let btPet2 = document.getElementById('btPet2')
-    btPet2.innerHTML = '<img src="./images/Ratigueya.png" alt="">'
+    let btPet2 = document.getElementById('btPet2');
+    btPet2.innerHTML = '<img src="./images/Ratigueya.png" alt="">';
 
-    player_element = 'Fire'
+    player_element = 'Fire';
 }
 
 function setWater() {
-    let pet1 = document.getElementById('choosing__pet__name1')
-    let pet2 = document.getElementById('choosing__pet__name2')
+    let pet1 = document.getElementById('choosing__pet__name1');
+    let pet2 = document.getElementById('choosing__pet__name2');
 
-    pet1.innerHTML = 'Hipodoge'
-    pet2.innerHTML = 'Suggles'
+    pet1.innerHTML = 'Hipodoge';
+    pet2.innerHTML = 'Suggles';
 
-    sectionElements.style.display = 'none'
-    sectionChoosing.style.display = 'flex'
+    sectionElements.style.display = 'none';
+    sectionChoosing.style.display = 'flex';
 
-    let btPet1 = document.getElementById('btPet1')
-    btPet1.innerHTML = '<img src="./images/Hipodoge.jpg" alt="">'
+    let btPet1 = document.getElementById('btPet1');
+    btPet1.innerHTML = '<img src="./images/Hipodoge.jpg" alt="">';
 
-    let btPet2 = document.getElementById('btPet2')
-    btPet2.innerHTML = '<img src="./images/Suggles.jpg" alt="">'
+    let btPet2 = document.getElementById('btPet2');
+    btPet2.innerHTML = '<img src="./images/Suggles.jpg" alt="">';
 
     btPet1.style.backgroundImage = 'linear-gradient(to top, #6ae6ff 0%, #0877ff 100%)';
     btPet2.style.backgroundImage = 'linear-gradient(to top, #6ae6ff 0%, #0877ff 100%)';
@@ -99,20 +113,20 @@ function setWater() {
 }
 
 function setEarth() {
-    let pet1 = document.getElementById('choosing__pet__name1')
-    let pet2 = document.getElementById('choosing__pet__name2')
+    let pet1 = document.getElementById('choosing__pet__name1');
+    let pet2 = document.getElementById('choosing__pet__name2');
 
-    pet1.innerHTML = 'Capipepo'
-    pet2.innerHTML = 'Todd'
+    pet1.innerHTML = 'Capipepo';
+    pet2.innerHTML = 'Todd';
 
-    sectionElements.style.display = 'none'
-    sectionChoosing.style.display = 'flex'
+    sectionElements.style.display = 'none';
+    sectionChoosing.style.display = 'flex';
 
-    let btPet1 = document.getElementById('btPet1')
-    btPet1.innerHTML = '<img src="./images/Capipepo.png"  alt="">'
+    let btPet1 = document.getElementById('btPet1');
+    btPet1.innerHTML = '<img src="./images/Capipepo.png"  alt="">';
 
-    let btPet2 = document.getElementById('btPet2')
-    btPet2.innerHTML = '<img src="./images/Todd.png"  alt="">'
+    let btPet2 = document.getElementById('btPet2');
+    btPet2.innerHTML = '<img src="./images/Todd.png"  alt="">';
 
     btPet1.style.backgroundImage = 'linear-gradient(to top, #b7ff8a 0%, #008409 100%)';
     btPet2.style.backgroundImage = 'linear-gradient(to top, #b7ff8a 0%, #008409 100%)';
@@ -121,42 +135,40 @@ function setEarth() {
 }
 
 function selectPlayerPet1() {
-    sectionChoosing.style.display = 'none'
+    sectionChoosing.style.display = 'none';
 
-    sectionMovements.style.display = 'flex'
-    sectionMessages.style.display = 'flex'
+    sectionMovements.style.display = 'flex';
+    sectionMessages.style.display = 'flex';
 
-    let img = document.getElementById('player__image')
+    let img = document.getElementById('player__image');
 
-    let btPet1 = document.getElementById('btPet1')
+    let btPet1 = document.getElementById('btPet1');
 
     let selectedPet;
 
     switch (btPet1.innerHTML) {
         case '<img src="./images/Kailamor.png" alt="">':
             selectedPet = 'Kailamor';
-            playerElement = 'Fire'
-            img.setAttribute('src', './images/Kailamor.png')
+            playerElement = 'Fire';
+            img.setAttribute('src', './images/Kailamor.png');
             break;
         case '<img src="./images/Hipodoge.jpg" alt="">':
-            selectedPet = 'Hipodoge'
-            playerElement = 'Water'
-            img.setAttribute('src', './images/Hipodoge.jpg')
+            selectedPet = 'Hipodoge';
+            playerElement = 'Water';
+            img.setAttribute('src', './images/Hipodoge.jpg');
             break;
         case '<img src="./images/Capipepo.png" alt="">':
-            selectedPet = 'Capipepo'
-            playerElement = 'Earth'
-            img.setAttribute('src', './images/Capipepo.png')
+            selectedPet = 'Capipepo';
+            playerElement = 'Earth';
+            img.setAttribute('src', './images/Capipepo.png');
             break;
     }
 
-    console.log(btPet1.innerHTML)
-
-    let petName = document.getElementById('movements__my-pet--name')
+    let petName = document.getElementById('movements__my-pet--name');
     petName.innerHTML = selectedPet;
 
     let petHealth = document.getElementById('movements__my-pet--health');
-    petHealth.innerHTML = ''
+    petHealth.innerHTML = '';
     for (let x = 0; x < myHearts; x++) {
         petHealth.innerHTML += '❤️';
     }
@@ -164,12 +176,12 @@ function selectPlayerPet1() {
 }
 
 function selectPlayerPet2() {
-    sectionChoosing.style.display = 'none'
+    sectionChoosing.style.display = 'none';
 
-    sectionMovements.style.display = 'flex'
-    sectionMessages.style.display = 'flex'
+    sectionMovements.style.display = 'flex';
+    sectionMessages.style.display = 'flex';
 
-    let img = document.getElementById('player__image')
+    let img = document.getElementById('player__image');
 
     let btPet2 = document.getElementById('btPet2');
 
@@ -206,9 +218,9 @@ function selectPlayerPet2() {
 
 function selectEnemyPet(playerPet) {
     let n = getRandom(1, 6);
-    let pet = ''
+    let pet = '';
 
-    let img = document.getElementById('enemy__image')
+    let img = document.getElementById('enemy__image');
 
     switch (n) {
         case 1:
@@ -261,22 +273,20 @@ function selectEnemyPet(playerPet) {
 }
 
 function selectMovement(type) {
-    console.log(1, playerElement)
     if (type == 1) {
         if (playerElement == 'Fire') {
-            setPlayerMovement('Burning flames', 'Wallfire', 'Pyrohealth')
+            setPlayerMovement('Burning flames', 'Wallfire', 'Pyrohealth');
         } else if (playerElement == 'Water') {
-            setPlayerMovement('Tsunami', 'Frosty', 'Relax waves')
+            setPlayerMovement('Tsunami', 'Frosty', 'Relax waves');
         } else if (playerElement == 'Earth') {
-            setPlayerMovement('Earthquake', 'Eternal mountains', 'Magic herbs')
+            setPlayerMovement('Earthquake', 'Eternal mountains', 'Magic herbs');
         }
     } else {
-        defineEnemyMovement()
+        defineEnemyMovement();
     }
 }
 
 function setPlayerMovement(attack, defense, healing) {
-    console.log(attack)
     let btMovement1 = document.getElementById('movements__bt-attack');
     let btMovement2 = document.getElementById('movements__bt-defense');
     let btMovement3 = document.getElementById('movements__bt-healing');
@@ -317,7 +327,6 @@ function defineEnemyMovement() {
 function setEnemyMovement(movement, attack, defense, healing) {
     switch (movement) {
         case 1:
-            console.log(enemyDefense)
             if (!playerDefense) {
                 myHearts--;
             }
