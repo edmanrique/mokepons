@@ -2,16 +2,17 @@
     font-family: BorisBlackBloxxDirty;
     src: url(./fonts/BorisBlackBloxxDirty.ttf) format('truetype');
 }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: BorisBlackBloxxDirty;
 }
 
 body{
-    background-image: url(./images/background.jpg)
+    background-image: url(./images/background.jpg);
+    font-family: BorisBlackBloxxDirty;
 }
 
 .title{
@@ -125,10 +126,37 @@ body{
 .messages{
     display: flex;
     flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.messages__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.messages__box{
+    width: 50vw;
+    height: 35vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    color: white;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 10px;
+    overflow-y: scroll;
+    scrollbar-color: rebeccapurple green;
 }
 
 .movements__do{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.movements__do button{
+    font-family: BorisBlackBloxxDirty;
 }

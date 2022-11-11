@@ -7,9 +7,14 @@ let enemyDefense = false;
 let playerElement;
 let enemyElement;
 
+let playerColor;
+let enemyColor;
+
 let sectionElements = document.getElementById('elements');
 let sectionChoosing = document.getElementById('choosing');
 let sectionMovements = document.getElementById('movements');
+let sectionMovementsPlayer = document.getElementById('movements__player');
+let sectionMovementsEnemy = document.getElementById('movements__enemy');
 let sectionMessages = document.getElementById('messages');
 let sectionResult = document.getElementById('result');
 
@@ -227,31 +232,37 @@ function selectEnemyPet(playerPet) {
             pet = 'Hipodoge';
             enemyElement = 'Water'
             img.setAttribute('src', './images/Hipodoge.jpg')
+            enemyColor = '#7ed0ff'
             break;
         case 2:
             pet = 'Suggles';
             enemyElement = 'Water'
             img.setAttribute('src', './images/Suggles.jpg')
+            enemyColor = '#7ed0ff'
             break;
         case 3:
             pet = 'Capipepo';
             enemyElement = 'Earth'
             img.setAttribute('src', './images/Capipepo.png')
+            enemyColor = '#90ff7c';
             break;
         case 4:
             pet = 'Todd';
             enemyElement = 'Earth'
             img.setAttribute('src', './images/Todd.png')
+            enemyColor = '#90ff7c';
             break;
         case 5:
             pet = 'Ratigueya';
             enemyElement = 'Fire'
             img.setAttribute('src', './images/Ratigueya.png')
+            enemyColor = '#ff4e4e';
             break;
         case 6:
             pet = 'Kailamor';
             enemyElement = 'Fire'
             img.setAttribute('src', './images/Kailamor.png')
+            enemyColor = '#ff4e4e';
             break;
     }
 
@@ -275,10 +286,13 @@ function selectEnemyPet(playerPet) {
 function selectMovement(type) {
     if (type == 1) {
         if (playerElement == 'Fire') {
+            playerColor = '#ff4e4e';
             setPlayerMovement('Burning flames', 'Wallfire', 'Pyrohealth');
         } else if (playerElement == 'Water') {
+            playerColor = '#7ed0ff'
             setPlayerMovement('Tsunami', 'Frosty', 'Relax waves');
         } else if (playerElement == 'Earth') {
+            playerColor = '#90ff7c';
             setPlayerMovement('Earthquake', 'Eternal mountains', 'Magic herbs');
         }
     } else {
@@ -395,16 +409,25 @@ function AddMovement(movement, type) {
         btHealing.disabled = false;
     }
 
-    let section = document.getElementById('messages')
-    let paragraph = document.createElement('p')
+    let movements = document.getElementById('messages__box');
+    let paragraph = document.createElement('p');
+    let text_movement = document.createElement('span')
 
     if (type == 1) {
-        paragraph.innerHTML = getPetName(1) + ' uses ' + movement;
+        paragraph.innerHTML = getPetName(1) + ' uses ';
     } else if (type == 2) {
-        paragraph.innerHTML = getPetName(2) + ' uses ' + movement;
+        paragraph.innerHTML = getPetName(2) + ' uses ';
     }
 
-    section.appendChild(paragraph)
+    text_movement.innerHTML = movement;
+
+    if(type == 1){
+        paragraph.innerHTML += '<span style="color:' + playerColor + '">' + movement + '</span>';
+    } else {
+        paragraph.innerHTML += '<span style="color:' + enemyColor + '">' + movement + '</span>';
+    }
+
+    movements.appendChild(paragraph);
 }
 
 function updatePetHearts() {
